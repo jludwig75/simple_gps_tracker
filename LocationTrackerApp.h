@@ -1,6 +1,6 @@
 #pragma once
-#include "GpsDevice.h"
-#include "GsmDevice.h"
+//#include "GpsDevice.h"
+//#include "GsmDevice.h"
 #include "LocationReporter.h"
 #include "LocationTracker.h"
 

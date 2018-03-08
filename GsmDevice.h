@@ -1,7 +1,6 @@
 #pragma once
 #include "GsmInterface.h"
 
-class HttpClient;
 #include <SoftwareSerial.h>
 
 #define TINY_GSM_MODEM_A7
@@ -18,7 +17,7 @@ public:
   virtual bool connect_gprs(unsigned long timeout);
   virtual bool disconnect_gprs();
   
-  virtual HttpClient *connect_http(const char *server, unsigned short port);
+  virtual HttpInterface *connect_http(const char *server, unsigned short port);
   
 private:
   const char *_apn;

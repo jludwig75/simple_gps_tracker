@@ -1,5 +1,5 @@
 #include "FakeGsm.h"
-#include "FakeHttpClient.h"
+#include "FakeHttpConnection.h"
 
 
 FakeGsm::FakeGsm() : _gsm_connected(false)
@@ -29,10 +29,8 @@ bool FakeGsm::disconnect_gprs()
   return true;
 }
 
-DummyClient dummy;
-
-HttpClient *FakeGsm::connect_http(const char *server, unsigned short port)
+HttpInterface *FakeGsm::connect_http(const char *server, unsigned short port)
 {
-  return new FakeHttpClient(dummy);
+  return new FakeHttpConnection();
 }
 

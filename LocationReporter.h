@@ -9,7 +9,7 @@ public:
   
   virtual const char *get_server_name() const;
   virtual unsigned short get_server_port() const;
-  virtual bool update_location(HttpClient *http, const GpsLocation & location);
+  virtual bool update_location(HttpInterface *http, const GpsLocation & location);
 private:
   const char *_server;
   unsigned short _port;

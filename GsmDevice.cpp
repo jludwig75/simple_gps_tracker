@@ -1,6 +1,7 @@
 #include "GsmDevice.h"
 
 #include <ArduinoHttpClient.h>
+#include "ArduinoHttpConnection.h"
 
 
 GsmDevice::GsmDevice(int gsm_rx, int gsm_tx, const char *apn, const char *user, const char *pwd, bool debug_at_commands) : _apn(apn), _user(user), _pwd(pwd), _serialAT(gsm_rx, gsm_tx), _modem(_serialAT), _client(_modem)
@@ -50,7 +51,7 @@ bool GsmDevice::disconnect_gprs()
   return _modem.gprsDisconnect();
 }
 
-HttpClient *GsmDevice::connect_http(const char *server, unsigned short port)
+HttpInterface *GsmDevice::connect_http(const char *server, unsigned short port)
 {
   
   HttpClient *http = new HttpClient(_client, server, port);
@@ -59,6 +60,13 @@ HttpClient *GsmDevice::connect_http(const char *server, unsigned short port)
     return NULL;
   }
 
-  return http;
+  HttpInterface *http_int = new ArduinoHttpConnection(http);
+  if (!http_int)
+  {
+    delete http;
+    return NULL;
+  }
+
+  return http_int;
 }
 

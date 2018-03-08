@@ -1,6 +1,7 @@
 #include "LocationReporter.h"
 
-#include <ArduinoHttpClient.h>
+#include "HttpInterface.h"
+#include <Arduino.h>
 
 
 LocationReporter::LocationReporter(const char *server, unsigned short port, const char *location_server_report_path) : _server(server), _port(port), _location_server_report_path(location_server_report_path)
@@ -19,7 +20,7 @@ unsigned short LocationReporter::get_server_port() const
 }
 
 
-bool LocationReporter::update_location(HttpClient *http, const GpsLocation & location)
+bool LocationReporter::update_location(HttpInterface *http, const GpsLocation & location)
 {
   Serial.print("Location: lat=");
   Serial.print(location.latitude);

@@ -26,7 +26,7 @@ void LocationTracker::on_loop()
         return;
       }
     
-      HttpClient *http = _gsm->connect_http(_location_reporter->get_server_name(), _location_reporter->get_server_port());
+      HttpInterface *http = _gsm->connect_http(_location_reporter->get_server_name(), _location_reporter->get_server_port());
       if (!http)
       {
         _gsm->disconnect_gprs();
