@@ -5,13 +5,19 @@
 
 #include <Windows.h>
 #include <assert.h>
+#include <conio.h>
 
 
 using namespace std;
 
 
-WindowsSerialInterface::WindowsSerialInterface(unsigned com_port_number) : _handle(NULL)
+WindowsSerialInterface::WindowsSerialInterface(unsigned com_port_number) : _com_port_number(com_port_number), _handle(NULL)
 {
+    if (com_port_number == 0)
+    {
+        return;
+    }
+
     stringstream ss;
     ss << "COM" << com_port_number;
     string port_name = ss.str();
@@ -39,13 +45,19 @@ WindowsSerialInterface::~WindowsSerialInterface()
     }
 }
 
-bool WindowsSerialInterface::open(unsigned long baud)
-{
-    return false;
-}
-
 bool WindowsSerialInterface::read_byte(unsigned char *byte)
 {
+    if (_com_port_number == 0)
+    {
+        if (_kbhit())
+        {
+            *byte = getch();
+            return true;
+        }
+
+        return false;
+    }
+
     DWORD bytes_read;
     OVERLAPPED ov = { 0 };
     ov.hEvent = _ov_event;
@@ -82,6 +94,12 @@ bool WindowsSerialInterface::read_byte(unsigned char *byte)
 
 bool WindowsSerialInterface::write_byte(unsigned char byte)
 {
+    if (_com_port_number == 0)
+    {
+        putc(byte, stdout);
+        return true;
+    }
+
     DWORD bytes_written;
     OVERLAPPED ov = { 0 };
     ov.hEvent = _ov_event;

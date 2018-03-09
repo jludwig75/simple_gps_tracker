@@ -42,12 +42,48 @@
     <ClCompile Include="Print.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="WString.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Stream.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HardwareSerial.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="WindowSerialInterface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Arduino.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="binary.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hardwareserial_private.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pins_arduino.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Print.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Printable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Stream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="usbapi.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WCharacter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="wstring.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

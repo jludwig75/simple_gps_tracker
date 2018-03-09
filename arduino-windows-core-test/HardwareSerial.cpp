@@ -276,12 +276,13 @@ int HardwareSerial::available(void)
 
     while (bytes_available < SERIAL_RX_BUFFER_SIZE)
     {
-        if (!_serial->read_byte(&_rx_buffer[_rx_buffer_tail]))
+        tx_buffer_index_t new_tail = (_rx_buffer_tail + 1) % SERIAL_RX_BUFFER_SIZE;
+        if (!_serial->read_byte(&_rx_buffer[new_tail]))
         {
             break;
         }
 
-        _rx_buffer_tail = (_rx_buffer_tail + 1) % SERIAL_RX_BUFFER_SIZE;
+        _rx_buffer_tail = new_tail;
         bytes_available++;
     }
 
@@ -302,6 +303,9 @@ int HardwareSerial::peek(void)
 int HardwareSerial::read(void)
 {
     assert(_serial != NULL);
+
+    available();
+
     // if the head isn't ahead of the tail, we don't have any characters
     if (_rx_buffer_head == _rx_buffer_tail) {
         return -1;

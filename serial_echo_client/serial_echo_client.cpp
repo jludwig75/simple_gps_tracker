@@ -5,14 +5,26 @@
 
 void setup()
 {
+    Serial.begin(9600);
+
+    Serial.println("Starting sketch.");
+    Serial.print("Enter something: ");
+    String s = Serial.readString();
+    Serial.print("You entered ");
+    Serial.println(s);
+
     Serial1.begin(9600);
-    Serial3.begin(9600);
 }
 
 void loop()
 {
-    while (Serial1.available())
+    if (Serial1.available())
     {
-        Serial3.write(Serial1.read());
+        Serial.write(Serial1.read());
+    }
+
+    if (Serial.available())
+    {
+        Serial1.write(Serial.read());
     }
 }
