@@ -51,7 +51,8 @@ bool WindowsSerialInterface::read_byte(unsigned char *byte)
     {
         if (_kbhit())
         {
-            *byte = getch();
+            *byte = _getch();
+            putc(*byte, stdout);
             return true;
         }
 

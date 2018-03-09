@@ -9,7 +9,9 @@ void setup()
 
     Serial.println("Starting sketch.");
     Serial.print("Enter something: ");
+    Serial.setTimeout(20000);
     String s = Serial.readString();
+    Serial.println("");
     Serial.print("You entered ");
     Serial.println(s);
 

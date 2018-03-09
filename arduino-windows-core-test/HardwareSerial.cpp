@@ -276,13 +276,15 @@ int HardwareSerial::available(void)
 
     while (bytes_available < SERIAL_RX_BUFFER_SIZE)
     {
-        tx_buffer_index_t new_tail = (_rx_buffer_tail + 1) % SERIAL_RX_BUFFER_SIZE;
-        if (!_serial->read_byte(&_rx_buffer[new_tail]))
+        //tx_buffer_index_t new_tail = (_rx_buffer_tail + 1) % SERIAL_RX_BUFFER_SIZE;
+        if (!_serial->read_byte(&_rx_buffer[_rx_buffer_head]))
         {
             break;
         }
 
-        _rx_buffer_tail = new_tail;
+        _rx_buffer_head = (_rx_buffer_head + 1) % SERIAL_RX_BUFFER_SIZE;
+
+        //_rx_buffer_tail = new_tail;
         bytes_available++;
     }
 
