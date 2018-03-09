@@ -1,11 +1,15 @@
 #pragma once
-//#include "GpsDevice.h"
-//#include "GsmDevice.h"
+#ifdef SIM_WITH_FAKES
+#include "FakeGps.h"
+#include "FakeGsm.h"
+#else  // SIM_WITH_FAKES
+#include "GpsDevice.h"
+#include "GsmDevice.h"
+#endif // SIM_WITH_FAKES
+
 #include "LocationReporter.h"
 #include "LocationTracker.h"
 
-#include "FakeGps.h"
-#include "FakeGsm.h"
 
 class LocationTrackerApp
 {
@@ -16,10 +20,13 @@ public:
   void loop();
 
 private:  
-  //GpsDevice _gps;
-  FakeGps _gps;
-  //GsmDevice _gsm;
-  FakeGsm _gsm;
+#ifdef SIM_WITH_FAKES
+    FakeGps _gps;
+    FakeGsm _gsm;
+#else  // SIM_WITH_FAKES
+    GpsDevice _gps;
+    GsmDevice _gsm;
+#endif // SIM_WITH_FAKES
   LocationReporter _reporter;
   LocationTracker _tracker;
 };

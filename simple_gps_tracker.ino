@@ -1,3 +1,4 @@
+#define SIM_WITH_FAKES
 #include "LocationTrackerApp.h"
 
 

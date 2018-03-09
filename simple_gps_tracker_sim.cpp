@@ -1,3 +1,4 @@
+#ifdef  WIN32
 #include "LocationTrackerApp.h"
 
 
@@ -35,3 +36,4 @@ int main(int argc, char *argv[])
 
     return 0;
 }
+#endif  // WIN32
